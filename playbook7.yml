@@ -1,0 +1,14 @@
+---
+- name: Install java and maven
+  hosts: all
+  tasks:
+    - name: Install java
+      apt:
+        name: openjdk-21-jdk
+        state: present
+        update_cache: yes
+    - name: Install maven
+      apt:
+        name: maven
+        state: present
+...
