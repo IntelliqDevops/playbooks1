@@ -1,0 +1,13 @@
+---
+- name: Implementing hsot scope variables
+  hosts: 44.243.100.205
+  tasks:
+    - name: Create a user
+      user:
+        name: "{{a}}"
+        password: "{{b}}"
+        home: "{{c}}"
+        uid: "{{d}}"
+        comment: "{{e}}"
+        shell: "{{f}}"
+...
