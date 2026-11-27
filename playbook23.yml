@@ -1,0 +1,17 @@
+---
+- name: Check if a file is empty and if so delete it
+  hosts: all
+  tasks:
+    - name: Capture file info
+      stat:
+        path: /tmp/file1
+      register: a
+    - name: Display output of the above module
+      debug:
+        var: a
+    - name: Delete if file1 is empty
+      file:
+        name: /tmp/file1
+        state: absent
+      when: a.stat.size == 0
+...
