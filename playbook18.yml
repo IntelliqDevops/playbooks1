@@ -30,7 +30,7 @@
       uri:
         url: "{{item}}"
         status_code: 200
-      loop:
+      with_items:
         - http://20.55.40.121:9090
         - http://74.235.97.85:9090
 ...
