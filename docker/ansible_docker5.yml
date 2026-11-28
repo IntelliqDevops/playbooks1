@@ -1,0 +1,25 @@
+---
+- name: Setup jenkins and tomcat for ci-cd as docker contianers using ansible playbooks
+  hosts: all
+  tasks:
+    - name: Create jenkins contianer
+      docker_container:
+        name: myjenkins
+        image: jenkins/jenkins
+        ports:
+          - 5050:8080
+
+    - name: Create tomcat for qaserver and prodserver
+      docker_container:
+        name: "{{item.a}}"
+        image: tomcat
+        ports:
+          - "{{item.b}}"
+        links:
+          - myjenkins:jenkins
+      loop:
+        - {a: qaserver,b: "6060:8080"}
+        - {a: prodserver,b: "7070:8080"}
+...
+
+
